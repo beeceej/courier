@@ -1,0 +1,27 @@
+syntax = "proto3";
+
+package courier;
+
+option go_package = "pb";
+
+
+service Mail {
+    rpc Send (SendMailRequest) returns (SendStatus);
+}
+
+message SendMailRequest {
+    string sender = 1;
+    repeated string recipients = 2;
+    string subject = 3;
+    string bodyText = 4;
+    string bodyType = 5;
+}
+
+
+message SendStatus {
+    enum Status {
+        Success = 0;
+        Fail = 1;
+    }
+    Status status = 1;
+}
