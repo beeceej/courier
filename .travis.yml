@@ -1,0 +1,13 @@
+
+language: go
+go:
+  - "1.10"
+os:
+  - linux
+  - osx
+matrix:
+  fast_finish: true
+install:
+  - go install
+script:
+  - go test

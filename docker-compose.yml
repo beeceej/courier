@@ -1,0 +1,11 @@
+version: '2'
+services:
+  api:
+    image: courier:latest
+    ports:
+      - "8000:8000"
+    environment:
+      - COURIER_PORT=:8000
+      - SMTP_PORT=587
+      - SMTP_HOST=smtp.gmail.com
+      - SMTP_PASSWORD="a password"

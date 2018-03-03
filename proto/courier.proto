@@ -6,10 +6,10 @@ option go_package = "pb";
 
 
 service Mail {
-    rpc Send (SendMailRequest) returns (SendStatus);
+    rpc Send (SendBody) returns (Response);
 }
 
-message SendMailRequest {
+message SendBody {
     string sender = 1;
     repeated string recipients = 2;
     string subject = 3;
@@ -18,10 +18,12 @@ message SendMailRequest {
 }
 
 
-message SendStatus {
-    enum Status {
-        Success = 0;
-        Fail = 1;
-    }
+message Response {
     Status status = 1;
+    string message = 2;
+}
+
+enum Status {
+    Success = 0;
+    Fail = 1;
 }
