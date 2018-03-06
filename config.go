@@ -15,8 +15,11 @@ var (
 	// SMTPHost is the host of your SMTP Host
 	SMTPHost = envMust("SMTP_HOST")
 
-	//SMTPPassword is your authentication method
+	// SMTPPassword is your authentication method
 	SMTPPassword = envMust("SMTP_PASSWORD")
+
+	// SMTPUser is your authentication method
+	SMTPUser = envMust("SMTP_USER")
 )
 
 func envMust(key string) (val string) {

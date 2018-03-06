@@ -8,4 +8,5 @@ services:
       - COURIER_PORT=:8000
       - SMTP_PORT=587
       - SMTP_HOST=smtp.gmail.com
-      - SMTP_PASSWORD="a password"
+      - SMTP_USER=$YOUR_EMAIL
+      - SMTP_PASSWORD=$YOUR_PASSWORD

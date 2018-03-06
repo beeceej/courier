@@ -23,10 +23,11 @@ func main() {
 
 	// Contact the server and print out its response.
 	r, err := c.Send(context.Background(), &pb.SendBody{
-		Recipients: []string{"abc@gmail.com, email@hotmail.com, coolDude6642@aim.com"},
+		Recipients: []string{"some-emails@gmail.com"},
+		Sender:     "email@gmail.com",
 		Subject:    "Hello, to my friends",
 		BodyText:   "Just saying hi",
-		BodyType:   "text",
+		BodyType:   "text/html",
 	})
 	if err != nil {
 		log.Fatalf("could not send mail: %v", err)

@@ -6,6 +6,7 @@ RUN go get github.com/golang/dep/cmd/dep
 COPY Gopkg.toml Gopkg.lock *.go ./
 COPY cmd cmd
 COPY pb pb
+COPY mail mail
 RUN dep ensure -v -vendor-only
 
 RUN cd cmd/courier && CGO_ENABLED=0 go install -ldflags '-extldflags "-static"'
