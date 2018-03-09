@@ -5,25 +5,14 @@ import (
 )
 
 type Mail struct {
-	Sender     string
-	Recipients []string
-	Subject    string
-	BodyText   string
-	BodyType   string
-
-	SMTPHost     string
-	SMTPPort     int
-	SMTPPassword string
+	Message Msg
+	SMTP    SMTP
 }
 
 func (m *Mail) Send() {
-	msg := mail.NewMessage()
-	msg.SetHeader("From", m.Sender)
-	msg.SetHeader("To", m.Recipients...)
-	msg.SetHeader("Subject", m.Subject)
-	msg.SetBody(m.BodyType, m.BodyText)
+	msg := m.Message.CreateGoMail()
 
-	d := mail.NewDialer(m.SMTPHost, m.SMTPPort, m.Sender, m.SMTPPassword)
+	d := mail.NewDialer(m.SMTP.Host, m.SMTP.Port, m.Message.From, m.SMTP.Password)
 
 	if err := d.DialAndSend(msg); err != nil {
 		panic(err)

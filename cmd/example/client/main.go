@@ -23,8 +23,8 @@ func main() {
 
 	// Contact the server and print out its response.
 	r, err := c.Send(context.Background(), &pb.SendBody{
-		Recipients: []string{"some-emails@gmail.com"},
-		Sender:     "email@gmail.com",
+		Recipients: []string{"email@email.com"},
+		Sender:     "email@email.com",
 		Subject:    "Hello, to my friends",
 		BodyText:   "Just saying hi",
 		BodyType:   "text/html",

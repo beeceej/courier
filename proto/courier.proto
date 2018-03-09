@@ -4,7 +4,6 @@ package courier;
 
 option go_package = "pb";
 
-
 service Mail {
     rpc Send (SendBody) returns (Response);
 }
@@ -12,9 +11,12 @@ service Mail {
 message SendBody {
     string sender = 1;
     repeated string recipients = 2;
-    string subject = 3;
-    string bodyText = 4;
-    string bodyType = 5;
+    repeated string cc = 3;
+    repeated string bcc = 4;
+    repeated string attachments = 5;
+    string subject = 6;
+    string bodyText = 7;
+    string bodyType = 8;    
 }
 
 

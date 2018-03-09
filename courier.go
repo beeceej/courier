@@ -2,30 +2,33 @@ package courier
 
 import (
 	"context"
-	"fmt"
-	"strconv"
 
 	"github.com/beeceej/courier/mail"
 	"github.com/beeceej/courier/pb"
 )
 
+// Courier is the server object for the courier grpc interface
 type Courier struct{}
 
+// Send is the rpc call to send mail
 func (s *Courier) Send(ctx context.Context, in *pb.SendBody) (*pb.Response, error) {
-	fmt.Printf("Message Received :: %v\n", in)
-	port, _ := strconv.ParseInt(SMTPServerPort, 10, 64)
-
 	mailer := mail.Mail{
-		Sender:       in.GetSender(),
-		Recipients:   in.GetRecipients(),
-		Subject:      in.GetSubject(),
-		BodyText:     in.GetBodyText(),
-		SMTPHost:     SMTPHost,
-		SMTPPassword: SMTPPassword,
-		SMTPPort:     int(port),
-		BodyType:     in.GetBodyType(),
+		Message: *mail.New(
+			mail.CC(in.GetCc()...),
+			mail.BCC(in.GetBcc()...),
+			mail.To(in.GetRecipients()...),
+			mail.From(in.GetSender()),
+			mail.Subject(in.GetSubject()),
+			mail.Body(in.GetBodyText()),
+			mail.BodyType(in.GetBodyType()),
+			mail.Attachments(in.GetAttachments()...),
+		),
+		SMTP: mail.SMTP{
+			Host:     SMTPHost,
+			Password: SMTPPassword,
+			Port:     int(SMTPServerPort),
+		},
 	}
-	fmt.Println(mailer)
 	mailer.Send()
 	return &pb.Response{Status: pb.Status_Success}, nil
 }
