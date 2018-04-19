@@ -20,10 +20,12 @@ All configuration options above are provided in the docker-compose.yml and may b
 
 ## Getting Started
 
-1. overide the environment variables in the docker-compose file,
-2. `docker-compose up`
-  * Courier is now running on your system!
-* you now need a method to communicate to the courier server, you may use the example client located in `cmd/client/main/go` or you may write your own
+1. build the docker image
+    * `docker build -t courier .`
+2. overide the environment variables in the docker-compose file,
+3. `docker-compose up`
+    * Courier is now running on your system!
+    * you now need a method to communicate to the courier server, you may use the example client located in `cmd/client/main/go` or you may write your own
 
 ## Creating your own client
 
