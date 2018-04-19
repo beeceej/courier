@@ -9,6 +9,7 @@ import (
 )
 
 const (
+	// address is the address to your Courier instance
 	address = "localhost:8000"
 )
 
